@@ -20,7 +20,8 @@ public class TestBusinessLogic {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		// Do nothing for now
+		// Do nothing for now 
+		// Testing commit to Github
 
 	}
 
