@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<property name="tomcatServer" value="D:\Tomcat_7.0" />
+	<property name="libraries" value="D:\Mahendra\Lib" />
+	<property name="tomcatDeploymentDir" value="${tomcatServer}/webapps" />
+	<property name="base" value="." />
+	<property name="src" value="${base}/src" />
+	<property name="destDir" location="D:/Mahendra/Deliverable"/>
+	<property name="classesDir" value="${destDir}/WEB-INF/classes" />
+
+
+	<property name="webcontent" value="${base}/WebContent" />
+	<property name="buildDir" value="${base}/Deliverable" />
+	<property name="" value="" />
+
+	<target name="clean">
+		<delete dir="${destDir}">
+		</delete>
+	</target>
+
+	<target name="compile">
+		
+		<mkdir dir="${destDir}"/>
+		<mkdir dir="${classesDir}"/>
+		<javac srcdir="src"
+         destdir="${classesDir}"
+         classpath="${libraries}\servlet-api.jar;${libraries}\junit-4.3.jar"
+         debug="on"
+		/>
+		<copydir src="${webcontent}" dest="${destDir}"></copydir>
+	</target>
+
+	<target name="war">
+		<war destfile="${destDir}/WebTrial70.war" basedir="${destDir}" >
+	</war>
+	</target>
+
+	<target name="deployWar">
+		<copy file="${destDir}/WebTrial70.war" overwrite="yes" todir="${tomcatDeploymentDir}">
+		</copy>
+	</target>
+</project>
