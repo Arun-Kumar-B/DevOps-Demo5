@@ -86,7 +86,7 @@
 		</war>
 	</target>
 
-	<target name="deployWar" depends="war">
+	<target name="deployWar">
 		<copy file="${destDir}/WebTrial70.war" overwrite="yes" todir="${tomcatDeploymentDir}">
 		</copy>
 	</target>

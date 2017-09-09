@@ -9,64 +9,113 @@
 <title>Home Page</title>
 </head>
 <body>
+<style>
+.editorDemoTable {
+  background-color: #FFF8C9;
+  border-spacing: 0;
+}
+.editorDemoTable td{
+  border: 1px solid #777;
+  margin: 0 !important;
+  padding: 2px 3px;
+}
+.editorDemoTable thead {
+  background-color: #2E6C80;
+  color: #FFF;
+}
+.editorDemoTable thead td {
+	font-weight: bold;
+	font-size: 13px;
+}
+</style>
+<h1 style="color: #4485b8;">&nbsp;</h1>
+<p>&nbsp;</p>
 	<form action="MyServlet" method="post">
-		<table>
-			<tr>
-				<td>Number of Fib elements</td>
-				<td><input type="text" name="numOfFibElements"></td>
-				<td><input type="hidden" name="Action" value="businesslogic"></td>
-				<td><input type="Submit" value="Generate Fib Series"></td>
-				<%
-					Object obj = request.getSession().getAttribute("Fibseries");
-					int arr[] = (int[]) obj;
-					String fibSeries = Arrays.toString(arr);
-					if (fibSeries.equals("null")) {
-						fibSeries = "";
-					}
-					session.removeAttribute("Fibseries");
-				%>
-				<td><label><%=fibSeries%></label></td>
-			</tr>
+		<table class="editorDemoTable"
+			style="vertical-align: top; width: 1000px; height: 135px;">
+			<thead>
+				<tr style="height: 23px;">
+					<td style="text-align: center; width: 200px; height: 23px;">&nbsp;</td>
+					<td style="text-align: center; width: 10px; height: 23px;">&nbsp;</td>
+					<td style="text-align: center; width: 150px; height: 23px;">&nbsp;</td>
+					<td style="text-align: center; width: 111px; height: 23px;">&nbsp;</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="height: 103px;">
+					<td style="width: 200px; height: 103px;"><strong>Number
+							of Fib elements</strong></td>
+					<td style="width: 10px; height: 103px;"><input
+						name="numOfFibElements" type="text" /><input name="Action"
+						type="hidden" value="businesslogic" /></td>
+					<td style="width: 150px; height: 103px;"><span
+						style="line-height: 35px;"><input type="Submit"
+							value="Generate Fib Series" /> </span></td>
+					<td style="width: 210px; height: 103px; text-align: left;">
+						<%
+							Object obj = request.getSession().getAttribute("Fibseries");
+							int arr[] = (int[]) obj;
+							String fibSeries = Arrays.toString(arr);
+							if (fibSeries.equals("null")) {
+								fibSeries = "";
+							}
+							session.removeAttribute("Fibseries");
+						%> <strong> <%=fibSeries%>
+					</strong>
+					</td>
+				</tr>
+			</tbody>
 
-		</table>
-	
-		<table>
-			<tr>
-				<td>Number of Prime numbers</td>
-				<td><input type="text" name="numOfPrimeNumbers"></td>
-				<td><input type="hidden" name="Action" value="GeneratePrimeNumbers"></td>
-				<td><input type="Submit" value="Generate Prime numbers"></td>
-				<%
-					Object obj1 = request.getSession().getAttribute("PrimeNumbers");
-					int arr1[] = (int[]) obj1;
-					String primeNumbers = Arrays.toString(arr1);
-					if (primeNumbers.equals("null")) {
-						primeNumbers = "";
-					}
-					session.removeAttribute("PrimeNumbers");
-				%>
-				<td><label><%=primeNumbers%></label></td>
-			</tr>
-		</table>
-		
-		<table>
-			<tr>
-				<td>Commas Separated numbers</td>
-				<td><input type="text" name="sortNumbers"></td>
-				<td><input type="hidden" name="Action" value="SortNumbers"></td>
-				<td><input type="Submit" value="Sort the numbers"></td>
-				<%
-					Object obj2 = request.getSession().getAttribute("SortedNumbers");
-					int arr2[] = (int[]) obj2;
-					String sortedNumbers = Arrays.toString(arr2);
-					if (sortedNumbers.equals("null")) {
-						sortedNumbers = "";
-					}
-					session.removeAttribute("SortedNumbers");
-				%>
-				<td><label><%=sortedNumbers%></label></td>
-			</tr>
+			<tbody>
+				<tr style="height: 103px;">
+					<td style="width: 200px; height: 103px;"><strong>Number
+							of Prime numbers</strong></td>
+					<td style="width: 10px; height: 103px;"><input
+						name="numOfPrimeNumbers" type="text" /><input name="Action"
+						type="hidden" value="GeneratePrimeNumbers" /></td>
+					<td style="width: 150px; height: 103px;"><span
+						style="line-height: 35px;"><input type="Submit"
+							value="Generate Prime numbers" /> </span></td>
+					<td style="width: 210px; height: 103px; text-align: left;">
+						<%
+							Object obj1 = request.getSession().getAttribute("PrimeNumbers");
+							int arr1[] = (int[]) obj1;
+							String primeNumbers = Arrays.toString(arr1);
+							if (primeNumbers.equals("null")) {
+								primeNumbers = "";
+							}
+							session.removeAttribute("PrimeNumbers");
+						%> <strong><%=primeNumbers%></strong>
+
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+			
+				<tr style="height: 103px;">
+					<td style="width: 200px; height: 103px;"><strong>Comma
+							Separated numbers</strong></td>
+					<td style="width: 10px; height: 103px;"><input
+						name="sortNumbers" type="text" /><input name="Action"
+						type="hidden" value="SortNumbers" /></td>
+					<td style="width: 150px; height: 103px;"><span
+						style="line-height: 35px;"><input type="Submit"
+							value="Sort the numbers" /> </span></td>
+					<td style="width: 210px; height: 103px; text-align: left;">
+						<%
+							Object obj2 = request.getSession().getAttribute("SortedNumbers");
+							int arr2[] = (int[]) obj2;
+							String sortedNumbers = Arrays.toString(arr2);
+							if (sortedNumbers.equals("null")) {
+								sortedNumbers = "";
+							}
+							session.removeAttribute("SortedNumbers");
+						%> <strong><%=sortedNumbers%></strong>
+					</td>
+				</tr>
+			</tbody>
 		</table>
 	</form>
+
 </body>
 </html>

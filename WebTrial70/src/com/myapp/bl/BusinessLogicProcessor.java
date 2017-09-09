@@ -52,7 +52,7 @@ public class BusinessLogicProcessor {
 		for (int counter = 2; counter < i; counter++) {
 			if (i % counter == 0) {
 				isPrime = false; // this is the CORRECT logic uncomment this to pass the test case
-				// isPrime = true; // this is the WRONG logic uncomment this to fail the test
+				//isPrime = true; // this is the WRONG logic uncomment this to fail the test
 				// case
 				return isPrime;
 			}
