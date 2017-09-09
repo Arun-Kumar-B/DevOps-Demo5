@@ -61,4 +61,38 @@ public class TestBusinessLogic {
 		//System.out.println(" generatedPrimeNums Prime Numbers is >>"+Arrays.toString(generatedPrimeNums));
 		assertArrayEquals(expectedPrimeNumbers, generatedPrimeNums);
 	}
+	
+	@Test
+	public void testIsEven() {
+		int num = 2;
+		boolean even = bl.isEven(num);
+		assertTrue(even);
+		
+	}
+	@Test 
+	public void testIsPalindrome() {
+		String str = "aba";
+		boolean yesPalindrome = bl.isPalindrome(str);
+		assertTrue(yesPalindrome);
+	}
+	@Test
+	public void testSorting() {
+		
+		//int [] inArr = {3,4,5,6,7,1,2,10};
+		
+		String strNumbersToBeSorted = "15,3,4,5,6,7,1,2,10";
+		int[] inArr = Arrays.asList(strNumbersToBeSorted.split(","))
+                .stream()
+                .map(String::trim)
+                .mapToInt(Integer::parseInt).toArray();
+		//System.out.println("inArr Arr >>>" + Arrays.toString(inArr));
+		
+		int [] expectedArr = {1,2,3,4,5,6,7,10,15}; // give sorted array of the above inArr here
+		int [] returnArr = bl.sortArrayInAscnOrder(inArr);
+		//System.out.println("expectedArr Arr >>>" + Arrays.toString(expectedArr));
+		//System.out.println("returned Arr >>>" + Arrays.toString(returnArr));
+		assertArrayEquals(expectedArr, returnArr);
+		
+		//System.out.println("********In side testSorting");
+	}
 }

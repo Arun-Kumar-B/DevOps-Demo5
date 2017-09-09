@@ -59,6 +59,8 @@ public class MyServlet extends HttpServlet {
 		if (action.equals("businesslogic")) {
 			String strFibElements = request.getParameter("numOfFibElements");
 			String strPrimeElements = request.getParameter("numOfPrimeNumbers");
+			String strNumbersToBeSorted = request.getParameter("sortNumbers");
+			
 			//System.out.println("strFibElements >>"+strFibElements);
 			//System.out.println("strPrimeElements >>"+strPrimeElements);
 			
@@ -73,10 +75,19 @@ public class MyServlet extends HttpServlet {
 			}
 			if(!strPrimeElements.equalsIgnoreCase("")) {
 				int numOfPrimeElem = Integer.parseInt(strPrimeElements);
-				 bp = new BusinessLogicProcessor();
-				int[] arr = bp.generatePrimeNums(numOfPrimeElem);
+				 int[] arr = bp.generatePrimeNums(numOfPrimeElem);
 				//System.out.println("In side Myservlet Generated Prime Numbers >>"+Arrays.toString(arr));
 				request.getSession().setAttribute("PrimeNumbers", arr);
+				response.sendRedirect("Home.jsp");
+			}
+			
+			if(!strNumbersToBeSorted.equalsIgnoreCase("")) {
+				int[] numbers = Arrays.asList(strNumbersToBeSorted.split(","))
+	                      .stream()
+	                      .map(String::trim)
+	                      .mapToInt(Integer::parseInt).toArray();
+				int [] sortedNumbersArray = bp.sortArrayInAscnOrder(numbers);
+				request.getSession().setAttribute("SortedNumbers", sortedNumbersArray);
 				response.sendRedirect("Home.jsp");
 			}
 			

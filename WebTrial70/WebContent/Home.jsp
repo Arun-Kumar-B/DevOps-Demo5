@@ -19,13 +19,13 @@
 				<%
 					Object obj = request.getSession().getAttribute("Fibseries");
 					int arr[] = (int[]) obj;
-					String str = Arrays.toString(arr);
-					if (str.equals("null")) {
-						str = "";
+					String fibSeries = Arrays.toString(arr);
+					if (fibSeries.equals("null")) {
+						fibSeries = "";
 					}
 					session.removeAttribute("Fibseries");
 				%>
-				<td><label><%=str%></label></td>
+				<td><label><%=fibSeries%></label></td>
 			</tr>
 
 		</table>
@@ -39,13 +39,32 @@
 				<%
 					Object obj1 = request.getSession().getAttribute("PrimeNumbers");
 					int arr1[] = (int[]) obj1;
-					String str1 = Arrays.toString(arr1);
-					if (str1.equals("null")) {
-						str1 = "";
+					String primeNumbers = Arrays.toString(arr1);
+					if (primeNumbers.equals("null")) {
+						primeNumbers = "";
 					}
 					session.removeAttribute("PrimeNumbers");
 				%>
-				<td><label><%=str1%></label></td>
+				<td><label><%=primeNumbers%></label></td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<td>Commas Separated numbers</td>
+				<td><input type="text" name="sortNumbers"></td>
+				<td><input type="hidden" name="Action" value="SortNumbers"></td>
+				<td><input type="Submit" value="Sort the numbers"></td>
+				<%
+					Object obj2 = request.getSession().getAttribute("SortedNumbers");
+					int arr2[] = (int[]) obj2;
+					String sortedNumbers = Arrays.toString(arr2);
+					if (sortedNumbers.equals("null")) {
+						sortedNumbers = "";
+					}
+					session.removeAttribute("SortedNumbers");
+				%>
+				<td><label><%=sortedNumbers%></label></td>
 			</tr>
 		</table>
 	</form>
