@@ -2,6 +2,7 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
 <div><form action="MyServlet" method="post">
+
 <table style="border-color: red; margin-left: auto; margin-right: auto; height: 157px;" border="7" width="452" cellspacing="2" align="center" bgcolor="white">
 <tbody>
 <tr>
