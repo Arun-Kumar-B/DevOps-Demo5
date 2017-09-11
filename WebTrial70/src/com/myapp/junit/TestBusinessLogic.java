@@ -50,8 +50,24 @@ public class TestBusinessLogic {
 		//System.out.println(" >>> expected Fib Series >>" + Arrays.toString(expectedSeries));
 		//System.out.println(" >>> generated Fib Series>>" + Arrays.toString(generatedSeries));
 		assertArrayEquals(expectedSeries, generatedSeries);
-
 	}
+	
+	@Test
+	public void testStrGeneratedFibSeries() {
+		String input = "-1";
+		String returnedStr = bl.generateFibSeries(input);
+		String expectedStr = "Enter a valid number";
+		assertEquals(expectedStr, returnedStr);
+	}
+	@Test
+	public void testStrGeneratedFibSeries1() {
+		String input = "10";
+		String expectedStr = "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]";
+		String returnedStr = bl.generateFibSeries(input);
+		assertEquals(expectedStr, returnedStr);
+	}
+	
+	
 	@Test
 	public void testGeneratePrimeNum() {
 		int [] expectedPrimeNumbers = {1,2,3,5,7,11,13,17,19,23};
@@ -61,6 +77,30 @@ public class TestBusinessLogic {
 		//System.out.println(" generatedPrimeNums Prime Numbers is >>"+Arrays.toString(generatedPrimeNums));
 		assertArrayEquals(expectedPrimeNumbers, generatedPrimeNums);
 	}
+	
+	@Test
+	public void testStrGeneratePrimeNum() {
+		String input = "-1";
+		String returnedStr = bl.generatePrimeNums(input);
+		String expectedStr = "Enter a valid number";
+		//System.out.println("returnedStr >>"+returnedStr);
+		//System.out.println("expectedStr >>"+expectedStr);
+		assertEquals(expectedStr, returnedStr);
+		
+	}
+	
+	@Test
+	public void testStrGeneratePrimeNum1() {
+		String input = "8";
+		String returnedStr = bl.generatePrimeNums(input);
+		String expectedStr = "[1, 2, 3, 5, 7, 11, 13, 17]";
+		//System.out.println("returnedStr >>"+returnedStr);
+		//System.out.println("expectedStr >>"+expectedStr);
+		assertEquals(expectedStr, returnedStr);
+		
+	}
+	
+	
 	
 	@Test
 	public void testIsEven() {
@@ -75,6 +115,7 @@ public class TestBusinessLogic {
 		boolean yesPalindrome = bl.isPalindrome(str);
 		assertTrue(yesPalindrome);
 	}
+	
 	@Test
 	public void testSorting() {
 		

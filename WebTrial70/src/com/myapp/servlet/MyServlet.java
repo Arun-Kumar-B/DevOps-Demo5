@@ -67,17 +67,28 @@ public class MyServlet extends HttpServlet {
 			BusinessLogicProcessor bp = new BusinessLogicProcessor();
 
 			if(!strFibElements.equalsIgnoreCase("")) {
-				int numOfElements = Integer.parseInt(strFibElements);
-				int[] arr = bp.generateFibSeries(numOfElements);
+				//int numOfElements = Integer.parseInt(strFibElements);
+				//int[] arr = bp.generateFibSeries(numOfElements);
+				
+				String strFibSeries = bp.generateFibSeries(strFibElements);
 				//System.out.println("In side Myservlet Generated Fib servies>>"+Arrays.toString(arr));
-				request.getSession().setAttribute("Fibseries", arr);
+				request.getSession().setAttribute("Fibseries", strFibSeries);
 				response.sendRedirect("Home.jsp");
 			}
 			if(!strPrimeElements.equalsIgnoreCase("")) {
-				int numOfPrimeElem = Integer.parseInt(strPrimeElements);
-				 int[] arr = bp.generatePrimeNums(numOfPrimeElem);
+				
+				// check if strFibElements is a valid number if true set the result in string in Fibseries if false set the error message in the string. 
+				// In BP write method to validate if the num is correct, in BP write a method to convert int arr to str, change the method generateFibseries
+				// to return string.
+				
+				 //int numOfPrimeElem = Integer.parseInt(strPrimeElements); - old logic
+				 //int[] arr = bp.generatePrimeNums(numOfPrimeElem); - old logic
+				
+				String primeNumberStr = bp.generatePrimeNums(strPrimeElements);
 				//System.out.println("In side Myservlet Generated Prime Numbers >>"+Arrays.toString(arr));
-				request.getSession().setAttribute("PrimeNumbers", arr);
+				//request.getSession().setAttribute("PrimeNumbers", arr); - old logic
+				
+				request.getSession().setAttribute("PrimeNumbers", primeNumberStr);
 				response.sendRedirect("Home.jsp");
 			}
 			

@@ -54,10 +54,12 @@
 					<td style="width: 210px; height: 103px; text-align: left;">
 						<%
 							Object obj = request.getSession().getAttribute("Fibseries");
-							int arr[] = (int[]) obj;
-							String fibSeries = Arrays.toString(arr);
-							if (fibSeries.equals("null")) {
-								fibSeries = "";
+							//int arr[] = (int[]) obj;
+							//String fibSeries = Arrays.toString(arr);
+							String fibSeries = new String ("");
+							
+							if(obj != null){
+								fibSeries = obj.toString();
 							}
 							session.removeAttribute("Fibseries");
 						%> <strong> <%=fibSeries%>
@@ -79,13 +81,16 @@
 					<td style="width: 210px; height: 103px; text-align: left;">
 						<%
 							Object obj1 = request.getSession().getAttribute("PrimeNumbers");
-							int arr1[] = (int[]) obj1;
-							String primeNumbers = Arrays.toString(arr1);
-							if (primeNumbers.equals("null")) {
-								primeNumbers = "";
+							//int arr1[] = (int[]) obj1;
+							//String primeNumbers = Arrays.toString(arr1);
+							
+							String primeNumbers = new String("");
+							if(obj1 != null){
+								primeNumbers = obj1.toString();
 							}
 							session.removeAttribute("PrimeNumbers");
-						%> <strong><%=primeNumbers%></strong>
+						%> 
+						<strong><%=primeNumbers%></strong>
 
 					</td>
 				</tr>
