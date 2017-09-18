@@ -3,7 +3,7 @@
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
 <div><form action="MyServlet" method="post">
 
-<table style="border-color: blue; margin-left: auto; margin-right: auto; height: 157px;" border="7" width="452" cellspacing="2" align="center" bgcolor="white">
+<table style="border-color: gray; margin-left: auto; margin-right: auto; height: 157px;" border="7" width="452" cellspacing="2" align="center" bgcolor="white">
 <tbody>
 <tr>
 <td style="width: 430px;" colspan="02"><center><span style="font-size: large; color: #003300;"><em><strong>Welcome to CICD Demo</strong></em></span></center></td>

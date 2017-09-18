@@ -92,7 +92,7 @@ public class BusinessLogicProcessor {
 		for (int counter = 2; counter < i; counter++) {
 			if (i % counter == 0) {
 				isPrime = false; // this is the CORRECT logic uncomment this to pass the test case
-				// isPrime = true; // this is the WRONG logic uncomment this to fail the test
+				//isPrime = true; // this is the WRONG logic uncomment this to fail the test
 				// case
 				return isPrime;
 			}
@@ -132,19 +132,29 @@ public class BusinessLogicProcessor {
 	public int[] sortArrayInAscnOrder(int[] arr) {
 		// System.out.println("unsorted array before sorting : " + Arrays.toString(arr));
 
-		/*
-		 * ///////////////////////////////// ----- Selection sort algorithm starts
-		 * 
-		 * // Outer loop - need n-1 iteration to sort n elements for(int i=0; i<arr.length-1; i++){ /// this line is the correct logic //for(int i=1; i<arr.length-1; i++){ /// uncomment this line to
-		 * introduce a logical bug
-		 * 
-		 * //Inner loop to perform comparision and swapping between adjacent numbers //After each iteration one index from last is sorted for(int j= 1; j<arr.length-i; j++){
-		 * 
-		 * //If current number is greater than swap those two if(arr[j-1] > arr[j]){ int temp = arr[j]; arr[j] = arr[j-1]; arr[j-1] = temp; } }
-		 * 
-		 * } ///////////////////////////////////// ----- Selection sort algorithm ends
-		 */
-
+		
+		 ///////////////////////////////// ----- Selection sort algorithm starts
+		  
+		 // Outer loop - need n-1 iteration to sort n elements 
+		 /*
+		 for(int i=0; i<arr.length-1; i++){           /// this line is the correct logic 
+		 // for(int i=1; i<arr.length-1; i++) {        /// uncomment this line to introduce a logical bug
+		 
+		 		//Inner loop to perform comparision and swapping between adjacent numbers 
+		 		//After each iteration one index from last is sorted 
+		 	for(int j= 1; j<arr.length-i; j++){
+		 	//If current number is greater than swap those two 
+		 		if(arr[j-1] > arr[j]){ 
+		 			int temp = arr[j]; 
+		 			arr[j] = arr[j-1]; 
+		 			arr[j-1] = temp; 
+		 		} 
+		 	}
+		  
+		 } 
+		 ///////////////////////////////////// ----- Selection sort algorithm ends
+		*/ 
+		
 		////////////////////////////////////////////// Bubble sort logic starts
 		int n = arr.length;
 		int k;
@@ -157,7 +167,7 @@ public class BusinessLogicProcessor {
 			}
 		}
 		//////////////////////////////////////////////// Bubble sort logic ends
-
+		
 		// System.out.println("Sorted array >>"+ Arrays.toString(arr));
 		return arr;
 	}
