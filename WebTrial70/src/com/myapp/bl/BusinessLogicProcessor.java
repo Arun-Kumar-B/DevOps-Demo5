@@ -136,7 +136,7 @@ public class BusinessLogicProcessor {
 		 ///////////////////////////////// ----- Selection sort algorithm starts
 		  
 		 // Outer loop - need n-1 iteration to sort n elements 
-		 /*
+		 
 		 for(int i=0; i<arr.length-1; i++){           /// this line is the correct logic 
 		 // for(int i=1; i<arr.length-1; i++) {        /// uncomment this line to introduce a logical bug
 		 
@@ -153,8 +153,8 @@ public class BusinessLogicProcessor {
 		  
 		 } 
 		 ///////////////////////////////////// ----- Selection sort algorithm ends
-		*/ 
-		
+		 
+		/*
 		////////////////////////////////////////////// Bubble sort logic starts
 		int n = arr.length;
 		int k;
@@ -167,7 +167,7 @@ public class BusinessLogicProcessor {
 			}
 		}
 		//////////////////////////////////////////////// Bubble sort logic ends
-		
+		*/
 		// System.out.println("Sorted array >>"+ Arrays.toString(arr));
 		return arr;
 	}
