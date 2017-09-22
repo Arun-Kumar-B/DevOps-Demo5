@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project>
+<project xmlns:jacoco="antlib:org.jacoco.ant">
 	<property name="tomcatServer" value="D:\Tomcat_7.0" />
 	<property name="base" value="." />
 	<property name="libraries" value="${base}/lib" />
@@ -10,6 +10,8 @@
 	<property name="classesDir" value="${destDir}/WEB-INF/classes" />
 	<property name="webcontent" value="${base}/WebContent" />
 	<property name="buildDir" value="${base}/Deliverable" />
+	<property name="jacocoExecDir" value="${base}/JacocoExec" />
+	<property name="jacocoReportsDir" value="${base}/JacocoReports" />
 	<!-- check this if builddir is needed -->
 
 
@@ -31,8 +33,9 @@
 
 	</target>
 
-	<!-- Run Junit -->
-	<target name="runJunit" depends="compile">
+	<!-- ********************* Run Junit ************************-->
+	<!-- I am not using this target now as I have a separate target which will run junit as well as do the code coverage.-->
+	<target name="runJunit" depends="compile" description="Run junit tests">
 		<mkdir dir="${junitReportDir}"/>
 
 		<junit printsummary="yes" haltonerror="no" haltonfailure="no">
@@ -44,7 +47,7 @@
 				<test name="com.myapp.junit.TestBusinessLogic" todir="${junitReportDir}"></test>
 				<test name="com.myapp.junit.TestLoginValidation" todir="${junitReportDir}"></test> 
 			-->
-			<batchtest todir="D:/GitRepository/WebTrial70/JunitReports">
+			<batchtest todir="${junitReportDir}">
 				<fileset dir="${classesDir}" includes="**/Test*"/>
 			</batchtest>
 
@@ -65,6 +68,82 @@
         </junit>
 		-->
 	</target>
+	<!-- ********************* Run Junit ************************-->
+	
+	<!-- ***** Generate Junit and publish coverage to Jacoco exec file **********-->
+	<!-- Do not change the name of this target as "junitWithJacocoCoverage" is configured in Jenkins as an Ant target to run for JunitandJacoco Job --> 
+	<target name="junitWithJacocoCoverage" depends="compile" description="Run junit tests and code coverage reporting">
+		<mkdir dir="${jacocoExecDir}"/>
+	    <!--   <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml" classpath="${libraries}\org.jacoco.agent-0.7.9.201702052155.jar;${libraries}\org.jacoco.ant-0.7.9.201702052155.jar;${libraries}\org.jacoco.report-0.7.9.201702052155.jar;${libraries}\org.jacoco.core-0.7.9.201702052155.jar"/>-->
+		<!-- <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml" classpath="${libraries}\org.jacoco.ant-0.7.9.jar;${libraries}\org.jacoco.agent-0.7.9.jar;${libraries}\org.jacoco.report-0.7.9.jar;${libraries}\org.jacoco.core-0.7.9.jar"/> -->
+		
+		<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml" 
+			classpath="${libraries}\jacoco0.7.8\org.jacoco.ant-0.7.8.201612092310.jar;
+			${libraries}\jacoco0.7.8\org.jacoco.agent-0.7.8.201612092310.jar;
+			${libraries}\jacoco0.7.8\org.jacoco.report-0.7.8.201612092310.jar;
+			${libraries}\jacoco0.7.8\org.jacoco.core-0.7.8.201612092310.jar"/>
+   
+		<jacoco:coverage destfile="${jacocoExecDir}/jacoco.exec" xmlns:jacoco="antlib:org.jacoco.ant">
+	        	<junit printsummary="yes" haltonfailure="no" haltonerror="no" fork="true">
+	            	<classpath path="${libraries}\junit-4.3.jar"/>
+	            	
+	            	<classpath path="${classesDir}" />
+	                 <formatter type="plain" usefile="false" /> 
+	                <formatter type="xml"/>
+	            	
+	            	
+	            	<batchtest fork="yes" todir="${junitReportDir}">
+	            		<fileset dir="${classesDir}" includes="**/Test*"/>
+	                </batchtest>
+	            	
+	            </junit>
+	        </jacoco:coverage>
+			<!-- copy src, classes, jacoco.exec to Jenkins -->
+			<!-- this is not needed as i have incoporated Jacoco in the Junit job which has it own workspace.
+			<delete dir="D:/Jenkins/workspace/JunitJobAndJaCoCo/JacocoWorkspace" />
+			<mkdir dir="D:/Jenkins/workspace/JunitJobAndJaCoCo/JacocoWorkspace"/>
+			<mkdir dir="D:/Jenkins/workspace/JunitJobAndJaCoCo/JacocoWorkspace/src"/>
+			<mkdir dir="D:/Jenkins/workspace/JunitJobAndJaCoCo/JacocoWorkspace/classes"/>
+			<copydir src="${src}" dest="D:/Jenkins/workspace/JunitJobAndJaCoCo/JacocoWorkspace/src"></copydir>
+			<copydir src="${classesDir}" dest="D:/Jenkins/workspace/JunitJobAndJaCoCo/JacocoWorkspace/classes"></copydir>
+			<copy file="${jacocoExecDir}/jacoco.exec" todir="D:/Jenkins/workspace/JunitJobAndJaCoCo/JacocoWorkspace"></copy>
+	    	-->
+	</target>
+		
+	<!-- ***** Generate Junit and publish coverage to Jacoco this target is retained never worked **********-->
+	
+	<target name="jacocoReport" depends="junitWithJacocoCoverage">
+		
+		<mkdir dir="${jacocoReportsDir}"/>
+		
+			<jacoco:report>
+				
+				<!-- This task needs the collected execution data and ... -->
+				<executiondata>
+					
+					<file file="${jacocoExecDir}/jacoco.exec" />
+				</executiondata>
+
+				
+				<!-- the class files and optional source files ... -->
+				
+				<structure name="JaCoCo Ant Example">
+					<classfiles>
+						<fileset dir="${classesDir}" includes="**/Test*"/>
+					</classfiles>
+					<sourcefiles encoding="UTF-8">
+						<fileset dir="${src}" includes="**/Test*"/>
+					</sourcefiles>
+				</structure>
+				
+				<!-- to produce reports in different formats. -->
+				<html destdir="${jacocoReportsDir}"/>
+				<csv  destfile="${jacocoReportsDir}/report.csv" />
+				<xml  destfile="${jacocoReportsDir}/report.xml" />
+			</jacoco:report>
+		</target>
+	
+	
 	<!--
 		<target name="junitReport" depends="runJunit">
 		        <junitreport todir="D:/GitRepository/WebTrial70/JunitReports">
