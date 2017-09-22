@@ -58,6 +58,7 @@ public class TestBusinessLogic {
 		String returnedStr = bl.generateFibSeries(input);
 		String expectedStr = "Enter a valid number";
 		assertEquals(expectedStr, returnedStr);
+		assertEquals(expectedStr, bl.generateFibSeries("nfe"));
 	}
 	@Test
 	public void testStrGeneratedFibSeries1() {
@@ -86,7 +87,7 @@ public class TestBusinessLogic {
 		//System.out.println("returnedStr >>"+returnedStr);
 		//System.out.println("expectedStr >>"+expectedStr);
 		assertEquals(expectedStr, returnedStr);
-		
+		assertEquals(expectedStr, bl.generatePrimeNums("nfe"));
 	}
 	
 	@Test
@@ -107,13 +108,14 @@ public class TestBusinessLogic {
 		int num = 2;
 		boolean even = bl.isEven(num);
 		assertTrue(even);
-		
+		assertFalse(bl.isEven(3));
 	}
 	@Test 
 	public void testIsPalindrome() {
 		String str = "aba";
 		boolean yesPalindrome = bl.isPalindrome(str);
 		assertTrue(yesPalindrome);
+		assertFalse(bl.isPalindrome("NOTPAL"));
 	}
 	
 	@Test
