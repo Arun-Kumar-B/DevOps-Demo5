@@ -51,7 +51,7 @@ public class TestLoginValidation {
 		String strus1 = "test";
 		String strpd1 = "test";
 		assertTrue(lv.validateLogin(strus1, strpd1));
-		
+		assertFalse(lv.validateLogin("test1", "123"));
 	}
 
 }
