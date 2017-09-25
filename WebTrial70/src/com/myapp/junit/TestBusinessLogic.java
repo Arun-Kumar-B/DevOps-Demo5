@@ -77,6 +77,10 @@ public class TestBusinessLogic {
 		//System.out.println(" Expected Prime Numbers           is >>"+Arrays.toString(expectedPrimeNumbers));
 		//System.out.println(" generatedPrimeNums Prime Numbers is >>"+Arrays.toString(generatedPrimeNums));
 		assertArrayEquals(expectedPrimeNumbers, generatedPrimeNums);
+		
+		int [] expArr1 = {1};
+		int [] geArr1 = bl.generatePrimeNums(expArr1.length);
+		assertArrayEquals(expArr1, geArr1);
 	}
 	
 	@Test
