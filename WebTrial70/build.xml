@@ -25,11 +25,17 @@
 
 		<mkdir dir="${destDir}"/>
 		<mkdir dir="${classesDir}"/>
-		<javac srcdir="src"
-         destdir="${classesDir}"
-         classpath="${libraries}\servlet-api.jar;${libraries}\junit-4.3.jar"
-         debug="on"
-		/>
+		
+		<javac srcdir="src" destdir="${classesDir}" debug="on">
+         	<classpath>
+			<fileset dir="${libraries}" id="id">
+   				<include name="servlet-api.jar"/>
+         		<include name="junit-4.3.jar"/>
+         		<include name="**/TestNG/*.jar"/>
+         		<include name="**/SeleniumJars/*.jar"/>
+			</fileset>
+         	</classpath>
+		</javac>
 
 	</target>
 
