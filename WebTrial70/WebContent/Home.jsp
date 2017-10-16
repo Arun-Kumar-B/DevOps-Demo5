@@ -115,7 +115,7 @@
 								sortedNumbers = "";
 							}
 							session.removeAttribute("SortedNumbers");
-						%> <strong><%=sortedNumbers%></strong>
+						%> <%=sortedNumbers%>
 					</td>
 				</tr>
 			</tbody>
